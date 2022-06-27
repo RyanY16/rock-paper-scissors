@@ -2,11 +2,67 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>Rock Paper Scissors</title>
 </head>
 <body>
     <script>
-        console.log("Hello, World!")
+        let playerWins = 0
+        let computerWins = 0
+        let roundNo = 1
+        function computerPlay() {
+            let computerSelectionNo = Math.floor(Math.random()*3)
+            switch(computerSelectionNo) {
+                case 0: 
+                    computerSelection = "rock"
+                    break;
+                case 1: 
+                    computerSelection = "paper"
+                    break; 
+                case 2: 
+                    computerSelection = "scissors"
+                    break;
+            }
+        }
+
+        function play() {
+            console.log("Round " + roundNo + ":")
+            input = prompt("Enter rock, paper or scissors: ")
+            playerSelection = input.toLowerCase()
+            computerPlay()
+            console.log("Player choice: " + playerSelection)
+            console.log("Computer choice: " + computerSelection)
+
+            if (playerSelection == computerSelection) {
+                console.log("Tie")
+            }
+            else if (playerSelection == "rock" && computerSelection == "scissors" || 
+                playerSelection == "scissors" && computerSelection == "paper" || 
+                playerSelection == "paper" && computerSelection == "rock") {
+                console.log("Player wins!")
+                playerWins += 1
+            }
+            else {
+                console.log("Computer wins!")
+                computerWins += 1
+            }
+            roundNo += 1
+            console.log("Player wins: " + playerWins)
+            console.log("Computer wins: " + computerWins)
+            console.log("")
+        }
+
+        while (playerWins < 5 && computerWins < 5) {
+            play()
+        }
+        if (playerWins == 5) {
+            console.log("Victory for player!")
+        }
+        if (computerWins == 5) {
+            console.log("Victory for computer!")
+        }
+        
+
+
     </script>
 </body>
 </html>
